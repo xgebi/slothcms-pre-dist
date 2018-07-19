@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const shell = require('gulp-shell')
 const runSequence = require("run-sequence");
+const watch = require('gulp-watch');
 
 gulp.task('install-be', () => {
 	return gulp
@@ -83,4 +84,21 @@ gulp.task("clean-all", () => {
 	);
 });
 
-/* TODO watch */
+/* watchers */
+
+gulp.task('watch-fe-src', () => {
+	return watch('../sloth-admin/src/**/*', () => {
+		runSequence('build-fe', 'copy-fe');
+	});
+});
+
+gulp.task('watch-be', () => {
+	return watch('../sloth-admin-api/src/**/*', () => {
+		gulp.start('copy-be');
+	});
+});
+
+
+gulp.task('watch-all', () => {
+	return gulp.start('watch-fe-src', 'watch-be')
+});
