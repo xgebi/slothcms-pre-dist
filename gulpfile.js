@@ -31,7 +31,7 @@ gulp.task("clean", () => {
 	return gulp
 		.src("./")
 		.pipe(shell([
-			"cd .. && rm -rf dist"
+			"rm -rf dist"
 		]));
 });
 
@@ -39,9 +39,8 @@ gulp.task("copy-be", () => {
 	return gulp
 		.src("./")
 		.pipe(shell([
-			"cd .. && \
-			rsync -ruPE sloth-admin-api/vendor/ dist/lib/ && \
-			rsync -ruPE sloth-admin-api/src/ dist/slothcms/sloth-admin-api/"
+			"rsync -ruPE ../sloth-admin-api/vendor/ dist/lib/ && \
+			rsync -ruPE ../sloth-admin-api/src/ dist/slothcms/sloth-admin-api/"
 		]));
 });
 
@@ -49,8 +48,7 @@ gulp.task("copy-fe", () => {
 	return gulp
 		.src("./")
 		.pipe(shell([
-			"cd .. && \
-			rsync -ruPE sloth-admin/dist/ dist/slothcms/sloth-admin/"
+			"rsync -ruPE ../sloth-admin/dist/ dist/slothcms/sloth-admin/"
 		]));
 });
 
@@ -58,8 +56,7 @@ gulp.task("create-folders", () => {
 	return gulp
 		.src("./")
 		.pipe(shell([
-			"cd .. && \
-			mkdir dist && \
+			"mkdir dist && \
 			mkdir dist/slothcms"
 		]));
 });
