@@ -1,0 +1,2 @@
+#!/bin/bash
+docker container run --rm -it -v /path/to/dist/folder:/var/www/slothcms -p 80:80 slothdocked
