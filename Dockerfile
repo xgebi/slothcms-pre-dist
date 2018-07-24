@@ -7,8 +7,6 @@ RUN rm sites-enabled/000-default.conf && a2enmod rewrite
 
 WORKDIR /var/www
 
-COPY phpinfo.php html/index.php
-
 RUN mkdir slothcms && mkdir slothcms/slothcms && service apache2 restart
 
 EXPOSE 80
