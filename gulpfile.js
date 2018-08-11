@@ -3,14 +3,6 @@ const shell = require('gulp-shell')
 const runSequence = require("run-sequence");
 const watch = require('gulp-watch');
 
-gulp.task('install-be', () => {
-	return gulp
-		.src('./')
-		.pipe(shell([
-			'cd ../sloth-admin-api && composer install'
-		]));
-})
-
 gulp.task('install-fe', () => {
 	return gulp
 		.src('./')
@@ -39,8 +31,7 @@ gulp.task("copy-be", () => {
 	return gulp
 		.src("./")
 		.pipe(shell([
-			"rsync -ruPE ../sloth-admin-api/vendor/ dist/lib/ && \
-			rsync -ruPE ../sloth-admin-api/src/ dist/slothcms/sloth-admin-api/"
+			"rsync -ruPE ../sloth-admin-api/src/ dist/slothcms/sloth-admin-api/"
 		]));
 });
 
@@ -66,7 +57,7 @@ gulp.task("fe", () => {
 });
 
 gulp.task("be", () => {
-	runSequence('install-be','copy-be');
+	runSequence('copy-be');
 });
 
 gulp.task("all", () => {
